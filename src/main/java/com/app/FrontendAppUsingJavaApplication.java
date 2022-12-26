@@ -20,13 +20,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @SpringBootApplication
 public class FrontendAppUsingJavaApplication {
@@ -37,29 +31,29 @@ public class FrontendAppUsingJavaApplication {
     public static void main(String[] args) throws IOException, InterruptedException {
         SpringApplication.run(FrontendAppUsingJavaApplication.class, args);
 
-        Process process1 =  new Process();
-        process1.setId(UUID.randomUUID());
-        process1.setProcessName("Some process name");
-
-
-        User user1 =  new User();
-        user1.setId(UUID.randomUUID());
-        user1.getProcesses().add(process1);
-
-        process1.getUsers().add(user1);
-
-        AnsweredQuestionnaire answeredQuestionnaire1 = new AnsweredQuestionnaire();
-        answeredQuestionnaire1.setId(UUID.randomUUID());
-        answeredQuestionnaire1.setProcess(process1);
-        process1.getAnsweredQuestionnaires().add(answeredQuestionnaire1);
-
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            String processJson = createJson(process1, mapper);
-            System.out.println("Converted json object is: "+processJson);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+//        Process process1 =  new Process();
+//        process1.setId(UUID.randomUUID());
+//        process1.setProcessName("Some process name");
+//
+//
+//        User user1 =  new User();
+//        user1.setId(UUID.randomUUID());
+//        user1.getProcesses().add(process1);
+//
+//        process1.getUsers().add(user1);
+//
+//        AnsweredQuestionnaire answeredQuestionnaire1 = new AnsweredQuestionnaire();
+//        answeredQuestionnaire1.setId(UUID.randomUUID());
+//        answeredQuestionnaire1.setProcess(process1);
+//        process1.getAnsweredQuestionnaires().add(answeredQuestionnaire1);
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//            String processJson = createJson(process1, mapper);
+//            System.out.println("Converted json object is: "+processJson);
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
 //-------------------------------------------------
         System.out.println("------------==============------------------");
 
@@ -85,15 +79,18 @@ public class FrontendAppUsingJavaApplication {
 //        httpClient.execute(request);
 //        System.out.println(response.body());
 
-        try {
-            String jsonResponse = executePost("http://localhost:8080/process", process1, new HashMap<>(), new HashMap<>());
-        }catch (Exception e){
-            System.out.println(e);
-        }
+//        try {
+//            String jsonResponse = executePost("http://localhost:8080/process", process1, new HashMap<>(), new HashMap<>());
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
 
 
-
-
+//        ResourceBundle test here
+        System.out.println("Test here for resource bundle");
+        Locale locale = new Locale("de", "DE");
+        ResourceBundle bundle = ResourceBundle.getBundle("com.app.util.MyResourceBundle", locale);
+        System.out.println(bundle.getString("test"));
     }
 
     public  static String executePost(
